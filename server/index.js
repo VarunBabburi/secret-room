@@ -27,13 +27,13 @@ mongoose.connect(process.env.MONGO_URL)
 
 // 🔥 Funny Bot Dialogues
 const funnyDialogues = [
-  "Evadra ikkada silent ga unnadu? Nuv Mogonivi ayithe mesg chey ra!",
+  "Evadra nuvvu intha silent ga unnav? Nuv Mogonivi ayithe mesg chey ra!",
   "Arey, evaraina matladandra babu.. lekapothe naku BP lethadhi!",
-  "Em mama, andaru silent ayipoyaru? Evariki nenu gurthu ledha?",
+  "Em mama, andaru silent ayipoyaru? Evariki na weakness lu gurthu osthaleva.. ?",
   "Orey, ekkadunnav ra? Nee kosam ikkada andaru waiting!",
   "Varun App ante aa mathram premium untadhi mari.. enjoy pandago!",
   "Chatting cheyyandi ra ante, group lo andaru nidrapothunnara?",
-  "Enti mama.. message kottadaniki kuda intha tension ah?"
+  "Enti mama.. message cheyadaniki entha show chethanav?"
 ];
 
 // Room-wise bot control
