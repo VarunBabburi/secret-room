@@ -11,13 +11,16 @@ const Message = require("./models/Message");
 app.use(cors());
 const server = http.createServer(app);
 
+// 🚀 Socket.io setup with Production Settings
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*", // Live lo andhariki access ivvadaniki
     methods: ["GET", "POST"],
   },
+  connectionStateRecovery: {} // Connection drop ayithe automatic ga recover chesthundhi
 });
 
+// 💥 MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected Mama! 💥"))
   .catch((err) => console.log("DB Connection Error:", err));
@@ -33,7 +36,7 @@ const funnyDialogues = [
   "Enti mama.. message kottadaniki kuda intha tension ah?"
 ];
 
-// Room-wise bot control cheyadaniki oka object
+// Room-wise bot control
 let activeBots = {};
 
 io.on("connection", (socket) => {
@@ -48,18 +51,26 @@ io.on("connection", (socket) => {
       const messages = await Message.find({ room: room });
       socket.emit("previous_messages", messages);
 
-      // 2. 🔥 Funny Bot Logic - Start only if not active in this room
+      // 2. 🔥 Funny Bot Logic
       if (!activeBots[room]) {
         activeBots[room] = setInterval(() => {
-          const randomIndex = Math.floor(Math.random() * funnyDialogues.length);
-          const botMsg = {
-            author: "Broker BOT 🤖",
-            message: funnyDialogues[randomIndex],
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase(),
-            _id: "bot-" + Date.now(),
-            room: room
-          };
-          io.to(room).emit("receive_message", botMsg);
+          // Room lo users evaraina unnara ani check cheyali (Empty room lo bot avasaram ledhu)
+          const clients = io.sockets.adapter.rooms.get(room);
+          if (clients && clients.size > 0) {
+            const randomIndex = Math.floor(Math.random() * funnyDialogues.length);
+            const botMsg = {
+              author: "Broker BOT 🤖",
+              message: funnyDialogues[randomIndex],
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase(),
+              _id: "bot-" + Date.now(),
+              room: room
+            };
+            io.to(room).emit("receive_message", botMsg);
+          } else {
+            // Evaru lekapothe interval clear cheseyali (Server load thaggadaniki)
+            clearInterval(activeBots[room]);
+            delete activeBots[room];
+          }
         }, 60000); // 1 minute interval
       }
 
@@ -68,7 +79,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Typing signals
   socket.on("typing", (data) => {
     socket.to(data.room).emit("display_typing", data.username);
   });
@@ -77,7 +87,6 @@ io.on("connection", (socket) => {
     socket.to(data.room).emit("hide_typing");
   });
 
-  // Delete Message logic
   socket.on("delete_message", async (data) => {
     try {
       await Message.findByIdAndDelete(data.id);
@@ -87,7 +96,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Send Message logic
   socket.on("send_message", async (data) => {
     try {
       const newMessage = new Message(data);
@@ -103,6 +111,8 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING ON PORT 3001");
+// 🌍 Dynamic Port for Render Deployment
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+  console.log(`SERVER RUNNING ON PORT ${PORT} MAMA! 🚀`);
 });
