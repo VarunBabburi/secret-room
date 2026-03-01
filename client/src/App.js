@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import EmojiPicker from 'emoji-picker-react';
 import { useState, useEffect, useRef } from "react";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://secret-room-8ax7.onrender.com");
 
 function App() {
   const [username, setUsername] = useState("");
