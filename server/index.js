@@ -71,7 +71,7 @@ io.on("connection", (socket) => {
             clearInterval(activeBots[room]);
             delete activeBots[room];
           }
-        }, 60000); // 1 minute interval
+        }, 150000); // 1 minute interval
       }
 
     } catch (err) {
