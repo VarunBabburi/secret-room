@@ -1,0 +1,15 @@
+# Dependency folders (Most Important)
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables (Security kosam)
+.env
+server/.env
+
+# Production build
+client/build/
+
+# System files
+.DS_Store
+Thumbs.db
