@@ -111,7 +111,7 @@ function App() {
       {!showChat && !showWelcome ? (
         <div className="joinChatContainer">
           <h3>Secret Chat Circle</h3>
-          <p className="dev-credit">Developed with 🩵 by <b>Varun</b></p>
+          <p className="dev-credit"><b>Developed with 🖤 by Varun</b></p>
           <input type="text" placeholder="Nee Peru..." onChange={(e) => setUsername(e.target.value)} />
           <input type="text" placeholder="Room ID..." onChange={(e) => setRoom(e.target.value)} />
           <button onClick={joinRoom}>Join Room</button>
@@ -119,8 +119,8 @@ function App() {
       ) : showWelcome ? (
         <div className="welcome-screen">
           <div className="welcome-content">
-            <h1 className="glow-text">🚀 Welcome to</h1>
-            <h2 className="brand-name">VARUN'S PREMIUM CHAT</h2>
+            <h1 className="glow-text">💬 Welcome to</h1>
+            <h2 className="brand-name">VARUN'S DEN</h2>
             <div className="loading-bar"></div>
             <p>Connecting to Room {room}...</p>
           </div>
@@ -149,7 +149,7 @@ function App() {
                     {username !== msgContent.author && (
                       <span className={`message-author-name ${msgContent.author.includes("BOT") ? "bot-label" : ""}`}>
                           {msgContent.author}
-                        {msgContent.author.toLowerCase() === "varun" && (
+                        {msgContent.author.toLowerCase() === "Varun" && (
                           <span className="verified-tick">●</span> 
                         )}
                       </span>

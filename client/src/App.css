@@ -7,7 +7,7 @@ body {
 .App {
   width: 100vw;
   height: 100vh;
-  background-color: #f0f2f5; 
+  background-color: #000000; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@ body {
 
 /* Login Page Styling */
 .joinChatContainer {
-  background: white;
+  background: rgb(234, 230, 225);
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -48,13 +48,13 @@ body {
 
 .dev-credit {
   font-size: 12px;
-  color: #8696a0;
+  color: #000000;
   margin-top: -10px;
   margin-bottom: 20px;
 }
 
 .dev-credit b {
-  color: #1f7ddc;
+  color: #000000;
 }
 
 /* Chat Window Structure */
@@ -272,7 +272,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0b141a;
+  background-color: #050e13;
   color: white;
   text-align: center;
 }
