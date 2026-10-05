@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Space+Grotesk:wght@600;700&family=Outfit:wght@600;700&display=swap');
 body {
   margin: 0;
   padding: 0;
@@ -74,9 +75,11 @@ body {
   background-color: #202c33;
   display: flex;
   align-items: center;
+  justify-content: space-between; 
   padding: 0 15px;
   color: #e9edef;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-sizing: border-box;
 }
 
 .header-info {
@@ -100,19 +103,30 @@ body {
   gap: 10px;
 }
 
+
 .back-btn {
-  background: none;
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
   border: none;
-  color: white;
-  font-size: 24px;
+  color: #ffffff;
+
+  font-size: 28px;
+  line-height: 1;
+
   cursor: pointer;
-  padding: 5px 10px;
-  transition: 0.3s;
+  padding: 0;
+  margin:0;
 }
 
 .back-btn:hover {
   color: #ff0000; /* Exit kabatti red ayithe baguntundi */
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 .app-brand {
@@ -140,25 +154,11 @@ body {
 } 
 
 
-/* Custom Hidden Credit Background Pattern */
-/* .chat-body {
-  flex: 1;
-  background-color: #0b141a; WhatsApp Dark BG */
-  
-  /* Hidden 'babburi' letters in pattern */
-  /* background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M10 10h2v2h-2v-2zm10 30h2v2h-2v-2zM40 10h2v2h-2v-2zm10 30h2v2h-2v-2z'/%3E%3Ctext x='5' y='25' font-family='Arial' font-size='8'%3Eb%3C/text%3E%3Ctext x='45' y='15' font-family='Arial' font-size='8'%3Ea%3C/text%3E%3Ctext x='25' y='55' font-family='Arial' font-size='8'%3Eb%3C/text%3E%3Ctext x='65' y='45' font-family='Arial' font-size='8'%3Eb%3C/text%3E%3Ctext x='15' y='75' font-family='Arial' font-size='8'%3Eu%3C/text%3E%3Ctext x='55' y='65' font-family='Arial' font-size='8'%3Er%3C/text%3E%3Ctext x='35' y='35' font-family='Arial' font-size='8'%3Ei%3C/text%3E%3Ccircle cx='70' cy='10' r='2'/%3E%3Cpath d='M30 20l2 2-2 2-2-2 2-2z'/%3E%3C/g%3E%3C/svg%3E");
-  
-  overflow-y: auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  scroll-behavior: smooth;
-} */
 
 /* Message Bubbles Logic */
 .message {
   display: flex;
-  margin-bottom: 4px; /* Gap thaggincha */
+  margin-bottom: 4px; 
 }
 
 #you { justify-content: flex-end; }
@@ -267,18 +267,139 @@ body {
 
 /* Splash/Welcome Screen */
 .welcome-screen {
+  width: 100%;
   height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #050e13;
+  background: #0b0f14;
   color: white;
   text-align: center;
 }
 
-.welcome-content { animation: fadeIn 1s ease-in; }
-.glow-text { font-size: 20px; color: #8696a0; margin: 0; }
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.security-icon {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #151c24;
+  border: 1px solid #263341;
+  font-size: 34px;
+  margin-bottom: 22px;
+  animation: securityPulse 2s infinite;
+}
+
+.secure-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.secure-subtitle {
+  margin: 8px 0 18px;
+  color: #9aa7b4;
+  font-size: 15px;
+}
+
+.room-badge {
+  padding: 9px 18px;
+  border-radius: 8px;
+  background: #151c24;
+  border: 1px solid #263341;
+  color: #aeb9c5;
+  font-size: 14px;
+}
+
+.room-badge strong {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.secure-loader {
+  width: 220px;
+  height: 4px;
+  margin-top: 28px;
+  background: #1c252e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.secure-loader-line {
+  width: 45%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #00c6ff,
+    #0072ff,
+    #00c6ff
+  );
+  animation: connectionLine 1.5s ease-in-out infinite;
+}
+
+@keyframes connectionLine {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  50% {
+    transform: translateX(120%);
+  }
+
+  100% {
+    transform: translateX(450%);
+  }
+}
+
+.connection-status {
+  margin-top: 14px;
+  color: #778593;
+  font-size: 13px;
+}
+
+@keyframes loadingDots {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes securityPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.04);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.02);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .brand-name {
   font-size: 32px;
@@ -348,4 +469,128 @@ body {
 .bot-label {
   color: #ffd700 !important; /* Gold color for Bot Name */
   font-weight: bold;
+}
+.room-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #242449;
+  border: 1px solid #3b3b68;
+   
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.room-avatar svg {
+  width: 27px;
+  height: 27px;
+}
+.home-icon {
+  width: 23px;
+  height: 23px;
+  fill: #e9edef;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover .home-icon {
+  fill: #ffffff;
+  transform: scale(1.1);
+}
+/* Quoted message style inside bubble */
+/* Quoted Reply inside Message Bubble */
+.quoted-reply {
+  background: rgba(0, 0, 0, 0.15);
+  border-left: 4px solid #00a884;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.quoted-reply small {
+  color: #00a884;
+  display: block;
+}
+
+.quoted-reply p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  opacity: 0.85;
+}
+
+/* Reply Preview Bar above Input */
+.reply-preview-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2c34;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-left: 4px solid #00a884;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reply-info small {
+  color: #00a884;
+  font-size: 11px;
+}
+
+.reply-info p {
+  margin: 0;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.close-reply-btn {
+  background: none;
+  border: none;
+  color: #8696a0;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Corporate Footer Styling */
+.corporate-footer {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+/* .company-credit {
+  font-size: 11px;
+  color: #a0aec0;
+  letter-spacing: 0.3px;
+  margin: 0 0 4px 0;
+} */
+
+/* .company-credit b {
+  color: #e2e8f0;
+  font-weight: 600;
+} */
+
+.rights-text {
+  font-size: 9px;
+  color: #718096;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.joinChatContainer h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a0813;
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
